@@ -1,22 +1,24 @@
 import React from 'react';
-import style from '../style.css';
+import '../style.css';
 import {connect} from 'react-redux';
+import {AddCart , RemoveCart} from '../actions';
 class ShopView extends React.Component{
-    componentDidMount(){
-        console.log(this.props.list);
-    }
+    
     renderList(){
         return this.props.list.shopList.map( (product)=>{
             return <div className="col-md-3 col-sm-4 col-12" key={product.name}>
                        <div> <img className="pro-image" src={product.link} alt={product.name} /></div>
                        <div>{product.name}</div>
                        <div>{product.price}</div>
-                       <div><button>Add to cart</button></div>
+                       <div><button onClick={()=>this.props.AddCart(product)} >Add to cart</button></div>
+                       <div><button onClick={()=>this.props.RemoveCart(product)} >Remove from cart</button></div>
                    </div>
         })
     }
     render(){
-        return <div className="container"><div className="row">{this.renderList()} </div></div>
+        return <div className="container">
+                    <div className="row">{this.renderList()} </div>
+                </div>
     }
 }
 
@@ -24,4 +26,4 @@ const mapStateToProps=(state)=>{
     return {list:state}
 }
 
-export default connect(mapStateToProps)(ShopView);
+export default connect(mapStateToProps,{AddCart , RemoveCart})(ShopView);
