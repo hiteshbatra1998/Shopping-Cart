@@ -16,7 +16,7 @@ class ShopView extends React.Component{
         })
     }
     render(){
-        return <div className="container">
+        return <div className="container main-div">
                     <div className="row">{this.renderList()} </div>
                 </div>
     }
@@ -25,5 +25,10 @@ class ShopView extends React.Component{
 const mapStateToProps=(state)=>{
     return {list:state}
 }
-
-export default connect(mapStateToProps,{AddCart , RemoveCart})(ShopView);
+const mapDispatchToProps=(dispatch)=>{
+    return {
+        AddCart: product=>dispatch( AddCart(product)),
+        RemoveCart: product=>dispatch( RemoveCart(product) )
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ShopView);
