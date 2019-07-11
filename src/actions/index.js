@@ -11,3 +11,14 @@ export const RemoveCart=(product)=>{
         payload:product
     }
 }
+
+export const showCart=()=>{
+    return {
+        type:'SHOW_CART'
+    }
+}
+export const hideCart=()=>{
+    return {
+        type:'HIDE_CART'
+    }
+}
