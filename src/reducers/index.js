@@ -12,8 +12,18 @@ import {combineReducers} from 'redux';
         { name: 'h'  , size: 'M S' , freeShipping:true , price:'$12' , link:require('../images/1.jpg') },
         { name: 'i'  , size: 'M S' , freeShipping:true , price:'$12' , link:require('../images/1.jpg') }
    ]
-   const cartList=[] 
+   const cartList=[]
+   const show=false 
 const shopList=(state=products,action)=>{
+    return state;
+}
+const showCart=(state=show, action)=>{
+    if(action.type==="SHOW_CART"){
+        state=true;
+    }
+    if(action.type==="HIDE_CART"){
+        state=false;
+    }
     return state;
 }
 const addCart =(state=cartList, action)=>{
@@ -53,7 +63,7 @@ const addCart =(state=cartList, action)=>{
             }
         }
     }
-    console.log(state);
+    //console.log(state);
     return state;
 }
 
@@ -61,5 +71,6 @@ const addCart =(state=cartList, action)=>{
 
 export default combineReducers({
     cartList:addCart,
-    shopList:shopList
+    shopList:shopList,
+    showCart:showCart
 })
