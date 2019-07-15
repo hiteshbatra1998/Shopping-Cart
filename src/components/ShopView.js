@@ -6,13 +6,15 @@ class ShopView extends React.Component{
     
     renderList(){
         return this.props.list.shopList.map( (product)=>{
-            return <div className="col-md-3 col-sm-4 col-12" key={product.name}>
-                       <div> <img className="pro-image" src={product.link} alt={product.name} /></div>
-                       <div>{product.name}</div>
-                       <div>{product.price}</div>
-                       <div><button onClick={()=>this.props.AddCart(product)} >Add to cart</button></div>
-                       <div><button onClick={()=>this.props.RemoveCart(product)} >Remove from cart</button></div>
-                   </div>
+            return <div className="col-md-3 col-sm-4 col-12 " key={product.id}>
+                        <div className="productView">
+                            <div className="pro-image-div"> <img className="pro-image" src={product.link} alt={product.name} /></div>
+                            <div className="productName">{product.name}</div>
+                            <div>{product.price}</div>
+                            <div className="addCart"><div onClick={()=>this.props.AddCart(product)} >Add to cart</div></div>
+                            
+                        </div>
+                    </div>
         })
     }
     render(){
