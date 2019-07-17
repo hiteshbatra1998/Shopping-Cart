@@ -1,7 +1,7 @@
 export const AddCart=(product)=>{
     return {
         type:'ADD_CART',
-        payload:product
+        payload:product 
     }
 }
 
@@ -20,5 +20,16 @@ export const showCart=()=>{
 export const hideCart=()=>{
     return {
         type:'HIDE_CART'
+    }
+}
+
+export const showPopup=()=>{
+    return {
+        type:'SHOW_POP'
+    }
+}
+export const hidePopup=()=>{
+    return {
+        type:'HIDE_POP'
     }
 }
