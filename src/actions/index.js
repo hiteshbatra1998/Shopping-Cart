@@ -33,3 +33,14 @@ export const hidePopup=()=>{
         type:'HIDE_POP'
     }
 }
+export const showDescription=(product)=>{
+    return {
+        type:'SHOW_DESC',
+        payload:product
+    }
+}
+export const hideDescription=()=>{
+    return {
+        type:'HIDE_DESC'
+    }
+}
