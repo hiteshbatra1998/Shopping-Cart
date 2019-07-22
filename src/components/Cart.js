@@ -3,6 +3,12 @@ import '../style.css'
 import {connect} from 'react-redux';
 import {hideCart , RemoveCart} from '../actions'
 class Cart extends React.Component{ 
+    componentDidMount(){
+        if(!this.props.showCart){
+            var x=document.getElementById('cart')
+            x.classList.add('removeAnimation')
+        }
+    }
     subtotal(){
         let subtotal=0
         this.props.cart.map( product =>{
@@ -17,8 +23,8 @@ class Cart extends React.Component{
                         <div className="cartImgDiv"><img src={product.link} alt={product.name}/></div>
                         <div className="cartDesc">
                             <div>{product.name}</div>
-                            <div>{product.quantity}</div>
-                            <div>{product.price}</div>
+                            <div className="cartquantity">Quantity | {product.quantity}</div>
+                            <div className="cartquantity">{product.price}</div>
                         </div>
                         <div className="proPrice"> ${p} </div>
                         <div className="removePro" onClick={ ()=> this.props.RemoveCart(product) }>X</div>
@@ -53,6 +59,7 @@ const mapDispatchToProps=(dispatch)=>{
 const mapStateToProps=(state)=>{
     return {
         cart:state.cartList,
+        showCart:state.showCart
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Cart);
