@@ -70,21 +70,16 @@
     padding: 0;
 }
 #cart{
-    animation: show 0.5s ease-out;
     position: fixed;
-    top:0;
-    bottom:0;
-    right:0px;
     background-color:#1B1A20;
     z-index: 999;
     width:35%;
 }
-.removeAnimation{
-    animation: removeCart 1s ease;
-}
-@keyframes removeCart{
-    from{right:35%}
-    to{right: 0;}
+.cartOpen{
+    animation: show 0.5s ease-out;
+    top:0;
+    bottom:0;
+    right:0px;
 }
 @keyframes show {
     from{
@@ -94,7 +89,19 @@
         right:0;
     }
 }
-
+.cartClose{
+    animation: showClose 0.5s ease-out;
+    top:0;
+    bottom:0;
+}
+@keyframes showClose {
+    from{
+        right:0;
+    }
+    to{
+        right:-35%;
+    }
+}
 #removeCart{
     cursor: pointer;
     animation: remove 0.5s ease-out;
@@ -227,20 +234,39 @@
         opacity: 0.9;
     }
 }
+
 #productModal{
+    
+    font-size:50px;
+    
+    
+    background-color: white;
+    color:black;
+    
+   
+}
+.productModalOpening{
+    display: flex;
+    animation: modalOpen 1s ease;
     position:fixed;
     top:0px;
     bottom:0px;
     left:0px;
-    font-size:50px;
     right:0px;
-    display: flex;
-    background-color: white;
-    color:black;
-    animation: modal 1s ease;
     z-index: 9;
+   
 }
-@keyframes modal {
+.productModalClosing{
+    animation: modalClose 1s ease;
+    position:fixed;
+    top:50%;
+    bottom:50%;
+    left:50%;
+    right:50%;
+    z-index: 9;
+    overflow: hidden;
+}
+@keyframes modalOpen {
     from {
         right:50%;
         left:50%;
@@ -256,6 +282,23 @@
         bottom:0px;
         left:0px;
         right:0px;
+       
+    }
+}
+@keyframes modalClose {
+    from{
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
+        
+    }
+    to {
+        right:50%;
+        left:50%;
+        top:50%;
+        bottom:50%;
+        
     }
 }
 .modalAnimate{
@@ -369,4 +412,14 @@
     font-size:20px;
     text-align: center;
     cursor: pointer;
+}
+.back-img{
+    border-radius: 50%;
+    max-width:50px;
+    max-height: 50px;
+    cursor: pointer;
+    position: absolute;
+    top:10px;
+    left:10px;
+    
 }
