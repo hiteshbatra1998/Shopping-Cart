@@ -3,12 +3,7 @@ import '../style.css'
 import {connect} from 'react-redux';
 import {hideCart , RemoveCart} from '../actions'
 class Cart extends React.Component{ 
-    componentDidMount(){
-        if(!this.props.showCart){
-            var x=document.getElementById('cart')
-            x.classList.add('removeAnimation')
-        }
-    }
+   
     subtotal(){
         let subtotal=0
         this.props.cart.map( product =>{
@@ -17,13 +12,15 @@ class Cart extends React.Component{
         return subtotal;
     }
     renderList(){
+        console.log(this.props.cart)
         return this.props.cart.map( (product) =>{
             var p= eval(product.price.slice(1))*product.quantity
-           return <div className="cartList">
+           return <div className="cartList" key={product.name}>
                         <div className="cartImgDiv"><img src={product.link} alt={product.name}/></div>
                         <div className="cartDesc">
                             <div>{product.name}</div>
                             <div className="cartquantity">Quantity | {product.quantity}</div>
+                            <div className="cartquantity">Size | {product.sizeSelected}</div>
                             <div className="cartquantity">{product.price}</div>
                         </div>
                         <div className="proPrice"> ${p} </div>
@@ -33,9 +30,10 @@ class Cart extends React.Component{
     }
     render(){
         return (
-           <div  id="cart">
+           <div  id="cart" className="cartOpen">
                <div id="removeCart" onClick={()=>this.props.hideCart()}> X</div>
                <div id="mainCart"> {this.renderList()} </div>
+               
                <div id="checkout"> 
                     <div id="price">
                         <div id="subtotal">
@@ -58,8 +56,8 @@ const mapDispatchToProps=(dispatch)=>{
 }
 const mapStateToProps=(state)=>{
     return {
-        cart:state.cartList,
-        showCart:state.showCart
+        cart:state.cartList
+        
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Cart);
