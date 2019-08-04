@@ -1,7 +1,11 @@
-export const AddCart=(product)=>{
+export const AddCart=()=>{
     return {
-        type:'ADD_CART',
-        payload:product 
+        type:'ADD_CART'
+    }
+}
+export const AddCartToggle=()=>{
+    return {
+        type:'ADD_CART_TOGGLE'
     }
 }
 
@@ -11,7 +15,12 @@ export const RemoveCart=(product)=>{
         payload:product
     }
 }
-
+export const AddProduct=(product)=>{
+    return {
+        type:'ADD_PRODUCT',
+        payload:product
+    }
+}
 export const showCart=()=>{
     return {
         type:'SHOW_CART'
