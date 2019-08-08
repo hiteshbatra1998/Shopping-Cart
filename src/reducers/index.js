@@ -31,11 +31,19 @@ const showCart=(state=show, action)=>{
     return state;
 }
 const ManageCartList=(state=cartList,action)=>{
-    let newState=state
+    
     if(action.type==='ADD_PRODUCT'){
-        newState.push(action.payload)
+        state=[...state,action.payload]
     }
-    return newState;
+    if(action.type==='REMOVE_PRODUCT'){
+        for(let i=0;i<state.length;i++){
+            if(action.payload.id===state[i].id){
+                state= [...state.slice(0, i), ...state.slice(i+ 1)]
+                break
+            }
+        }
+    }
+    return state;
 }
 const ManageCart=(state=addCart,action)=>{
     let newState=state
